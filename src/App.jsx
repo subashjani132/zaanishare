@@ -7,7 +7,7 @@ import Upload from './pages/Upload';
 import Login from './pages/Login';
 import Admin from './pages/Admin';
 import Legal from './pages/Legal';
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './components/ProtectedRoute'; // Important Import
 
 function App() {
   return (
@@ -15,17 +15,23 @@ function App() {
       <Navbar />
       <div className="flex-grow">
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/watch/:id" element={<Watch />} />
           <Route path="/login" element={<Login />} />
           <Route path="/legal" element={<Legal />} />
           
-          {/* Protected Routes */}
+          {/* Protected Routes (Only logged-in users can see these) */}
           <Route path="/upload" element={
-            <ProtectedRoute><Upload /></ProtectedRoute>
+            <ProtectedRoute>
+              <Upload />
+            </ProtectedRoute>
           } />
+          
           <Route path="/admin" element={
-            <ProtectedRoute><Admin /></ProtectedRoute>
+            <ProtectedRoute>
+              <Admin />
+            </ProtectedRoute>
           } />
         </Routes>
       </div>

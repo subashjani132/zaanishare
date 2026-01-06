@@ -11,7 +11,7 @@ const ProtectedRoute = ({ children }) => {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
-        navigate('/login');
+        navigate('/login'); // Redirects to login if not signed in
       } else {
         setUser(session.user);
       }
